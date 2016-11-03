@@ -19,8 +19,8 @@ the original is stored in /img with a thumbnail and a medium-sized pic as well,
 so need lots of storage on /var/www/.  The medium one is used for the fancy
 gallery javascript plugin (click on an image, and see a gallery of medium pics).
 
-A tag name can be clicked and only those pics are shown.  When the Zip button
-then a zip file containing the large images is created in /zipped/.
+A tag name can be clicked and only those pics are shown.  When the Zip button is clicked
+then a zip file containing the large images is created in /zipped/ and a link to download it appears.  Most useful bit.
 
 Various operations are provided to change tag names, untag, delete tags and
 remove pics.
