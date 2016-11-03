@@ -1,0 +1,165 @@
+[% INCLUDE header
+   title = 'Tagski - Superfast Picture Tagger'
+%]
+
+      <!-- Start div maincol -->
+      <form method=POST enctype="multipart/form-data" accept-charset=utf-8 action="http://tagski/cgi-bin/tagski/tagski.cgi">
+
+      <!-- Right column -->
+      <div id="maincol" class="ui-widget-content">
+
+         <!-- picid, tags, image -->
+         [% FOREACH Row IN Pictures %]
+           <!-- 0:{tag_id=>tag_text}, 1:DSC_4444.JPG, 2:pic_id -->
+           [% FOREACH Col IN Row %]
+              [% IF loop.index == 0 %]
+                 [% TagListHash = Col %] <!-- remember the list of tags for the select below -->
+                 <div class="img_container">
+                    <div class="img_tag_text">
+                 [% IF Col.size < 1 %]
+                    no tags
+                 [% END %]
+                 [% FOREACH key IN Col.keys.sort %]
+                       <a href="http://tagski/cgi-bin/tagski/tagski.cgi?tag_filter=[% key %]">[% Col.$key %]</a>
+                 [% END %]
+                    </div>
+              [% ELSIF loop.index == 1 %]
+                    <a class="fancybox" rel="group" href="/img/Med_[% Col %]"><img src=/img/[% Col %] /> </a>
+                    <p class="img_tag_text_truncate">[% Col %]</p>
+              [% ELSIF loop.index == 2 %]
+                    <input type="checkbox" class="img_checkbox" name=pic_id_[% Col %] />
+                    <select
+                       name="select_pic_id_[% Col %]"
+                       class="img_selector"
+                       id="select_pic_id_[% Col %]"
+                       style="display:block">
+                       <option value="do_nothing" selected="selected">---</option>
+                       [% FOREACH key IN TagListHash.keys.sort %]
+                          <option value="untag_[% key %]">untag [% TagListHash.$key %]</option>
+                       [% END %]
+                       <option value="remove_pic_id_[% Col %]">remove pic</option>
+                    </select>
+                 </div>
+              [% END %]
+           [% END %]
+         [% END %]
+
+      <!-- End div maincol -->
+      </div>
+
+      <!-- Start div leftcol - adding section -->
+      <div id="leftcol" class="ui-widget-content">
+         <div id="tags-box" class="ui-widget-content">
+            <h2>Tags</h2>
+            <!-- Start div table of two rows, one column -->
+            <div class="div-table">
+               <div class="div-table-row">
+                  <div class="div_table-cell">
+                        [% FOREACH Row IN Tags %]
+                              [% tag_id = "" %]
+                              [% FOREACH Col IN Row %]
+                                 [% IF loop.first %]
+                                    [% tag_id = Col %]
+                                    <div class="tag_container" id="tag_container_tag_id_[% Col %]" >
+                                       <input type="checkbox"
+                                          class="tag_checkbox"
+                                          id=tag_checkbox_tag_id_[% Col %]
+                                          name=tag_id_[% Col %] />
+
+                                       <select
+                                          name="delete_or_rename_tagid_[% Col %]"
+                                          id="delete_or_rename_selector_tag_id_[% Col %]"
+                                          style="display:block"
+                                          onchange="do_selector(this.id)">
+                                          <option value="do_nothing" selected="selected">---</option>
+                                          <option value="del_[% Col %]">delete</option>
+                                          <option value="ren_[% Col %]">rename</option>
+                                      </select>
+
+
+                                       <div id=tag_text_tag_id_[% Col %]
+                                 [% ELSE %]
+                                            title="[% Col %]">
+                                  <a href="http://tagski/cgi-bin/tagski/tagski.cgi?tag_filter=[% tag_id %]">[% Col %]</a>
+                                      </div> 
+                                      <input type=submit
+                                             id="delete_or_rename_go_tag_id_[% tag_id %]"
+                                             class="tag_section_element"
+                                             name="delete_or_rename_go"
+                                             value="Go" 
+                                             style="display:none" />
+                                    </div>
+                                 [% END %]
+                              [% END %]
+                        [% END %]
+                  </div> <!-- end cell 1 -->
+               </div> <!-- end table row 1 -->
+               <div class="div-table-row">
+                  <div class="div_table-cell">
+
+
+                        <p class="tag_section_element">Type a new tag name here :</p>
+                        <input type="text"
+                               class="tag_section_element"
+                               name="add_tag" />
+
+                        <p class="tag_section_element">
+                           Select pictures to tag or just add the new tagname and/or select other tags, or
+                           select untag/remove pic in picture frame, then go :
+                        </p>
+
+                        <input type=submit
+                               class="tag_section_element"
+                               name=TagPictures
+                               value="Go" />
+
+                        [% IF TagIdFiltered > 0 %]
+                           <input type="hidden"
+                                  name=tag_filter
+                                  value=[% TagIdFiltered %] />
+
+                           <input type=submit
+                                  name=Refresh
+                                  class="tag_section_element"
+                                  value="Show All Pictures" />
+
+                           <input type=submit
+                                  class="tag_section_element"
+                                  name=ZipTaggedFiles
+                                  value="Zip tagged originals"
+                                  onclick="return startZip()" />
+
+                          <div id="zip_progress_div" style="display: none; width: 400px; float:right">
+                             <p>Zip Progess</p>
+                             <div id="zip_trough">
+                                <div id="zip_bar" style="width: 0%">
+                                </div>
+                             </div>
+                          Added : <span id="zip_received">0</span>/<span id="zip_total">0</span> (<span id="zip_percent">0</span>%)
+                         </div>
+
+                        [% END %]
+                  </div> <!-- end cell 2 -->
+               </div> <!-- end row two -->
+            </div> <!-- end table -->
+         <!-- end div tags box -->
+         </div>
+
+         <div id="status-box">
+
+            <!-- Status line box -->
+            [% FOREACH StatusLine IN StatusText %]
+               <p>[% StatusLine %]</p>
+            [% END %]
+
+            [% FOREACH ZipScriptLine IN ZipScriptText %]
+               <p>[% ZipScriptLine %]</p>
+            [% END %]
+
+         </div>
+
+      <!-- end div leftcol -->
+      </div>
+      </form>
+
+[% INCLUDE footer %]

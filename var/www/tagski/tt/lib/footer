@@ -1,0 +1,21 @@
+   <!-- End div wrapper -->
+   </div>
+
+   <!-- Start footer. -->
+   <div id="footer">
+      <h2>Copyright &copy; 2016 Andy Cragg</h2>
+   <!-- End footer. -->
+   </div>
+
+<!-- End div pagewidth -->
+</div>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+      $(".fancybox").fancybox();
+   });
+</script>
+
+</body>
+</html>
+

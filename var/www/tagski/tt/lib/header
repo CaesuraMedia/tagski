@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+   <title> [% title %] </title>
+   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+   <meta name="generator" content="csscreator.com" />
+   <link rel="stylesheet" href="/css/tagski.css" type="text/css" />
+
+   <!-- FancyBox : http://fancyapps.com/fancybox/#docs -->
+   <!-- Add jQuery library -->
+   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+   <!-- Add mousewheel plugin (this is optional) -->
+   <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+   <!-- Add fancyBox -->
+   <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+   <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+   <!-- Optionally add helpers - button, thumbnail and/or media -->
+   <link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+   <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+   <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+   <link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+   <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+   <!-- End FancyBox -->
+
+   <!-- jQuery UI -->
+   <script src="/jquery-ui-1.12.1/jquery-ui.js"></script>
+   <script src="/js/tagski.js"></script>
+
+   <!-- On load do some things with jQuery -->
+   <script>
+   // Shorthand for $( document ).ready()
+   $(function() {
+       onloadInit();
+   });
+   </script>
+
+</head>
+<body>
+<!-- Start div pagewidth -->
+<div id="pagewidth" >
+
+   <!-- Start div header -->
+   <div id="header">
+      <div style="float:left">
+         <h1>Tagski</h1>
+         <p>This is the ultimate super-fast picture tagger!</p>
+      </div>
+
+      <div id="progress_div" style="display: none; width: 400px; float:right">
+         <p>Upload Progress</p>
+         <div id="trough">
+            <div id="bar" style="width: 0%">
+            </div>
+         </div>
+         Received <span id="received">0</span>/<span id="total">0</span> (<span id="percent">0</span>%)
+      </div>
+
+      <div id="upload_section" style="display:block; float:right; width: 400px;">
+         <p>Upload new pics here</p>
+         <form method=POST
+               id="upload_form"
+               enctype="multipart/form-data" 
+               onSubmit="return startUpload()" >
+
+            <input type="file"
+               name="upload_images"
+               value=""
+               multiple />
+
+            <input type="submit"
+               name="get_uploaded_images"
+               value="Upload" />
+
+         </form>
+      </div> <!-- end upload form -->
+   </div>
+   <!-- End header -->
+
+   <div id="debug" style="display: none";>
+   </div>
+
+   <!-- Start div wrapper -->
+   <div id="wrapper" class="clearfix">
+

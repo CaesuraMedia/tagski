@@ -1,0 +1,214 @@
+/* ******************************************************************** */ 
+ * CSS for Tagski -- may contain some nuts.
+/* ******************************************************************** */ 
+html, body{ 
+ margin:0; 
+ padding:0; 
+ text-align:center; 
+ font-family : "Trebuchet MS", sans-serif;
+ font-size:100%;
+} 
+
+/* Use internal margins instead of padding.
+ */
+p,h1,h2,h3 {
+   margin-left:5px;
+   margin-right:5px;
+}
+
+img {
+   box-shadow: 2px 2px 5px #000000;
+}
+
+input {
+   font-size:100%;
+   background:lightblue;
+}
+textarea {
+   font-family : "Trebuchet MS", sans-serif;
+   background:#eeeeee;
+   border: 1px solid lightgray;
+   width:98%;
+   font-size:100%;
+}
+
+#pagewidth{ 
+ text-align:left; 
+ margin:0 auto; 
+ margin-top : 5px;
+ margin-left : 10px;
+ margin-right : 10px;
+ border : 2px solid lightgray;
+ padding:2px;
+ border-radius: 20px;
+} 
+ 
+#header{
+ position:relative; 
+ width:100%;
+ display:block;
+ overflow:auto;
+} 
+ 
+#leftcol{
+ width:30%; 
+ float:left; 
+ position:relative; 
+ border : 1px solid lightgray;
+ border-radius: 10px;
+}
+
+.leftbox {
+   margin:5px;
+   border:1px solid lightgray;
+}
+ 
+#maincol{
+ background-color: #FFFFFF;  
+ position: relative; 
+ width:67%;
+ float:right; 
+}
+ 
+#footer{
+ background-color:#FFFFFF; 
+ clear:both;
+ display:block;
+ overflow:auto;
+ border-top : 1px solid lightgray;
+ margin-top : 10px;
+} 
+ 
+/* ******************************************************************** */ 
+/* Clearfix: http://csscreator.com/attributes/containedfloat.php        */
+/* ******************************************************************** */
+.clearfix:after {
+ content: "."; 
+ display: block; 
+ height: 0; 
+ clear: both; 
+ visibility: hidden;
+}
+ 
+.clearfix{display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix{height: 1%;}
+.clearfix{display: block;}
+/* End hide from IE-mac */  
+
+#tags-box {
+   border-radius: 5px;
+   float: left;
+}
+#status-box {
+   float: left;
+   border-top:1px solid lightgray;
+   width:100%;
+   background-color: lightgray;
+   font-size:80%;
+   border-radius: 5px;
+}
+
+/* 
+ *  http://stackoverflow.com/questions/8877807/how-can-i-display-the-checkbox-over-the-images-for-selection
+ */
+.img_container {
+   border-radius: 5px;
+   position: relative;
+   /* width:160px; height:300px; */
+   width:160px;
+   height:220px;
+   float: left;
+   border: 1px solid lightgrey;
+   padding:2px;
+   margin:2px;
+   display:table-cell;
+   vertical-align:middle;
+   text-align:center;
+}
+
+.img_checkbox  { position: absolute; top: 0px; right: 0px; -webkit-transform: scale(2);}
+.img_selector  { position: absolute; bottom: 0px; left: 0px;}
+.img_tag_text  { font-size:70%; padding:1px; margin:1px}
+.img_tag_text_truncate  {
+   font-size:70%;
+   padding:1px; margin:1px
+   width: 150px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.img_tag_text_truncate_show_full  {
+   font-size:70%;
+   padding:1px; margin:1px
+   width: 150px;
+   word-wrap:break-word;
+}
+
+.tag_container {
+   position: relative;
+   float: left;
+   border: 1px solid lightgrey;
+   margin:2px;
+   padding:5px;
+   padding-bottom:30px;
+   background-color: lightblue;
+   border-radius: 5px;
+}
+
+.tag_checkbox  { border-radius: 5px; position: absolute; bottom: 0px; right: 0px; -webkit-transform: scale(2); }
+
+.tag_section_element {
+   width : 65%;
+   display:block
+   border: 1px solid #000000;
+   border-radius: 10px;
+}
+
+/* Div table */
+.div-table      {display:table}
+.div-table-row  {display:table-row}
+.div-table-cell {display:table-cell}
+
+
+/*
+ * Progress meter bar.
+ */
+#trough {
+ border: 1px solid #000000;
+ height: 20px;
+ display: block;
+ background-color: #DDDDDD;
+ border-radius: 5px;
+}
+#bar {
+ background-color: purple;
+ height: 20px;
+}
+
+/* Zip progress bar, different id.
+ */
+#zip_trough {
+ border: 1px solid #000000;
+ height: 20px;
+ display: block;
+ background-color: #DDDDDD;
+ border-radius: 5px;
+}
+#zip_bar {
+ background-color: purple;
+ height: 20px;
+}
+
+/* ******************************************************************** */ 
+/*                      printer styles                                  */ 
+/* ******************************************************************** */ 
+     
+ @media print{ 
+/*hide the left column when printing*/ 
+#leftcol{display:none;} 
+#twocols, #maincol{width:100%; float:none;}
+}
+

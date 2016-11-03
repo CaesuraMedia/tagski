@@ -1,0 +1,8 @@
+[% root     = '/var/www/tagski'
+   src      = "$root/tt/src"
+   dest     = "$root"
+   home     = "$root/index.html"
+   images   = "$root/img"
+   email    = 'you@yourgaff.ninja'
+%]
+
