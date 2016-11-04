@@ -29,3 +29,7 @@ showing what just happened and any errors (ie an uploaded file is not a JPG,
 all uploaded files must be a JPG ...).
 
 Uses CGI.pm, Class::DBI, Template Toolkit, jQuery, Image::Epeg (fast thumbnailer) etc.
+
+Installation instructions on a clean Ubuntu 16.04 are here : http://chintzbaby.com/wp/caesuramedia/2016/11/04/tagski-picture-tagger-install/ 
+
+Enjoy!
