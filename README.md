@@ -16,11 +16,10 @@ Pictures - Go button to create entries in the PictureTags table.
 
 Pictures are uploaded using the multiple Choose Files/Upload buttons, and
 the original is stored in /img with a thumbnail and a medium-sized pic as well,
-so need lots of storage on /var/www/.  The medium one is used for the fancy
+so need lots of storage on /var/www/.  The medium one is used for the fancybox
 gallery javascript plugin (click on an image, and see a gallery of medium pics).
 
-A tag name can be clicked and only those pics are shown.  When the Zip button
-then a zip file containing the large images is created in /zipped/.
+A tag name can be clicked and only those tagged pics are shown.  When the Zip button is clicked  a zip file containing the large images is created in /zipped/ and a link to download it appears.  Most useful bit.
 
 Various operations are provided to change tag names, untag, delete tags and
 remove pics.
@@ -29,4 +28,4 @@ Upload and zip progress bars are shown in Ajax styley.  There is a status box
 showing what just happened and any errors (ie an uploaded file is not a JPG,
 all uploaded files must be a JPG ...).
 
-
+Uses CGI.pm, Class::DBI, Template Toolkit, jQuery, Image::Epeg (fast thumbnailer) etc.
